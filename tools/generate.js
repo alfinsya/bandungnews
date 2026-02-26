@@ -6,7 +6,7 @@ const Handlebars = require('handlebars');
 /**
  * URL endpoint JSON dari Google Apps Script
  */
-const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzk7H09i-P5_5wPc82mgr53poH-3wtJi8kEe3eIsTqHmcdutsT-T1sPgnA5qx1SLtzpSg/exec';
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwxSv8HmShXP5nng9NTAVgnDgGtfzNCXh8liAgsUWjtTcvRC9KrXpr-ioWLGmultck0fw/exec';
 
 // Paths
 const TEMPLATE_PATH = path.join(__dirname, 'template.html');
