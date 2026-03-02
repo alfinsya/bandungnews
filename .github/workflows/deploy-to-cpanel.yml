@@ -25,12 +25,27 @@ jobs:
       - name: Run static generator
         run: node tools/generate.js
 
-      - name: Deploy via FTP to cPanel
+      # prefer SFTP when SSH_PRIVATE_KEY is provided, but fall back to FTP if you
+      # haven't managed to register the key on the server. the FTP action is very
+      # simple and often works on cPanel without extra setup.
+      - name: Deploy via SFTP to cPanel
+        if: ${{ secrets.SSH_PRIVATE_KEY != '' }}
+        uses: appleboy/scp-action@v0.1.6
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT || '22' }}
+          source: .
+          target: ${{ secrets.REMOTE_PATH }}
+          rm: true
+
+      - name: Deploy via FTP fallback
+        if: ${{ secrets.FTP_PASS != '' && secrets.SSH_PRIVATE_KEY == '' }}
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          local-dir: ./
+          local-dir: .
           server-dir: ${{ secrets.REMOTE_PATH }}
-          dangerous-clean-slate: true
