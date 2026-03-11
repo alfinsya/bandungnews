@@ -44,18 +44,14 @@
     });
 
 
-    // Tranding carousel
+    // Tranding carousel (breaking news) – no navigation arrows
     $(".tranding-carousel").owlCarousel({
         autoplay: true,
         smartSpeed: 2000,
         items: 1,
         dots: false,
         loop: true,
-        nav : true,
-        navText : [
-            '<i class="fa fa-angle-left"></i>',
-            '<i class="fa fa-angle-right"></i>'
-        ]
+        nav: false // arrows hidden via JS and CSS
     });
 
 

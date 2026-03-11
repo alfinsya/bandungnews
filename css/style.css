@@ -9567,9 +9567,18 @@ h6,
   z-index: 1;
 }
 
-/* nav controls are unnecessary for breaking news; hide to remove small "before" button */
-.tranding-carousel .owl-nav {
+/* nav controls are unnecessary for breaking news; hide entire nav container and grandchildren */
+.tranding-carousel .owl-nav,
+.tranding-carousel .owl-nav .owl-prev,
+.tranding-carousel .owl-nav .owl-next {
   display: none !important;
+}
+
+/* remove vertical gap above and reduce padding inside breaking news section */
+.container-fluid.bg-dark.py-3 {
+  margin-top: 0 !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
 }
 
 .tranding-carousel .owl-nav .owl-prev,
