@@ -4,9 +4,10 @@ async function loadLatestNews() {
         const response = await fetch('articles.json');
         const articles = await response.json();
 
-        // Get articles 2-5 (they are 0-indexed, so slice 2,6 gets indices 2,3,4,5)
-        // These should be the 3rd, 4th, 5th, 6th articles
-        const latestArticles = articles.slice(2, 6);
+        // Ambil beberapa artikel paling baru untuk latest news.
+        // dulu hanya 4 item (slice 2,6) tetapi kita perlu menampilkan lebih banyak.
+        // sekarang ambil 12 artikel (index 2..13) agar pengguna dapat melihat lebih banyak berita.
+        const latestArticles = articles.slice(2, 14);
 
         // Simple container lookup by ID
         const latestNewsRow = document.getElementById('latestNewsRow');
@@ -22,7 +23,9 @@ async function loadLatestNews() {
         let adsAdded = false;
         latestArticles.forEach((article, index) => {
             const colDiv = document.createElement('div');
-            colDiv.className = 'col-lg-6';
+            // gunakan kolom yang lebih kecil agar tiga item bisa muat di layar besar
+            // dan dua item pada layar sedang.
+            colDiv.className = 'col-lg-4 col-md-6';
             
             const articleHtml = `
                 <div class="position-relative mb-3">

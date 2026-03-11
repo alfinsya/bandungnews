@@ -67,8 +67,10 @@ document.addEventListener('DOMContentLoaded', function() {
             // Clear existing items
             featuredNews.innerHTML = '';
 
-            // Ambil 6 berita terbaru untuk featured news (skip 4 yang sudah di main carousel)
-            const featuredArticles = articles.slice(4, 10);
+// Ambil 15 berita terbaru untuk featured news (skip 4 yang sudah di main carousel)
+    // slice(4, 19) akan mencoba mengambil indices 4..18, tetapi jika tidak cukup artikel
+    // maka hanya yang tersedia yang ditampilkan. Carousel akan tetap dapat digeser manual.
+    const featuredArticles = articles.slice(4, 19);
 
             // Render featured news items
             featuredArticles.forEach(article => {
@@ -89,11 +91,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     nav: true,
                     navText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
                     responsive: {
-                        0: { items: 1 },
+                                0: { items: 1 },
                         576: { items: 1 },
                         768: { items: 2 },
                         992: { items: 3 },
-                        1200: { items: 4 }
+                        1200: { items: 4 },
+                        1600: { items: 5 } // allow a fifth item on very wide screens
                     }
                 });
             }
